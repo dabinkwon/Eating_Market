@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "RoundedFixedsys";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff")
+    format("woff");
+  font-weight: normal;
+  font-display: swap;
+}
+
+.bg-card {
+  @apply bg-white rounded-md min-h-60 flex flex-wrap gap-7 items-center p-4 h-auto;
+}
+
+body * {
+  font-family: "RoundedFixedsys";
+}
+
+html,
+body {
+  background-color: rgb(246, 246, 246);
+}
+
+#root {
+  height: 100%;
+  min-height: 100vh;
+}
