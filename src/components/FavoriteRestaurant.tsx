@@ -1,5 +1,3 @@
-import RestaurantItem from "./RestaurantItem";
-
 const FavoriteRestaurant = () => {
   return (
     <div>
