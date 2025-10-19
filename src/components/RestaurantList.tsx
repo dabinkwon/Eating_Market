@@ -1,10 +1,11 @@
 import { usePlaces } from "../hooks/usePlaces";
+import Loading from "./Loading";
 import RestaurantItem from "./RestaurantItem";
 
 const RestaurantList = () => {
   const { data, isLoading, error } = usePlaces();
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <Loading />;
   if (error) return <div>error : {error.message}</div>;
   if (!data) return null;
 
