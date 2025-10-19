@@ -1,4 +1,4 @@
 const Loading = () => {
-  return <div className="text-center font-semibold text-2xl">Loading...</div>;
+  return <div className="text-center text-2xl font-semibold">Loading...</div>;
 };
 export default Loading;

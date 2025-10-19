@@ -13,7 +13,7 @@ const RestaurantList = () => {
 
   return (
     <div>
-      <h3 className="text-center mb-3 text-xl font-semibold">
+      <h3 className="mb-3 text-center text-xl font-semibold">
         Restaurant List
       </h3>
       <div className="bg-card">
