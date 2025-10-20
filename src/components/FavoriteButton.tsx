@@ -1,27 +1,22 @@
 import { IoHeartCircle } from "react-icons/io5";
 import { IoHeartCircleOutline } from "react-icons/io5";
 import { useFavorites } from "../hooks/useFavorite";
-import type { Place } from "../types/place";
+import type { ResturantItemProps } from "../types/place";
 
-interface FavoriteButtonProps {
-  place: Place;
-}
-
-const FavoriteButton = ({ place }: FavoriteButtonProps) => {
-  const { addFavorite, isFavorite, deleteFavorite } = useFavorites();
-
+const FavoriteButton = ({ place, onDeleteClick }: ResturantItemProps) => {
+  const { addFavorite, isFavorite } = useFavorites();
   const isCurrentlyFavorite = isFavorite(place.id);
 
   const handleClick = () => {
-    if (isCurrentlyFavorite) {
-      deleteFavorite.mutate(place.id);
+    if (isCurrentlyFavorite && onDeleteClick) {
+      onDeleteClick();
     } else {
       addFavorite.mutate(place);
     }
   };
 
   return (
-    <div className="mx-auto transform cursor-pointer p-1 transition duration-700 ease-in-out hover:scale-150">
+    <div className="mx-auto cursor-pointer p-1 transition-transform duration-700 ease-in-out hover:scale-150">
       {isCurrentlyFavorite ? (
         <IoHeartCircle
           onClick={handleClick}

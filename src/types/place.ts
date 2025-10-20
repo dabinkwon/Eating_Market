@@ -18,4 +18,5 @@ export interface ResturantListProps {
 
 export interface ResturantItemProps {
   place: Place;
+  onDeleteClick?: () => void;
 }
