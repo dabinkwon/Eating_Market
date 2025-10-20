@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { sortPlacesByDistance } from "../utils/distance";
 import type { Places } from "../types/place";
 
 interface UseSortedPlacesReturn {
   sortedPlaces: Places;
+  getLocation: () => void;
   geoError: string | null;
   isGeoLoading: boolean;
 }
@@ -13,7 +14,7 @@ export const useSortedPlaces = (data: Places): UseSortedPlacesReturn => {
   const [geoError, setGeoError] = useState<string | null>(null);
   const [isGeoLoading, setIsGeoLoading] = useState(false);
 
-  useEffect(() => {
+  const getLocation = () => {
     if (!data) return;
 
     setIsGeoLoading(true);
@@ -35,7 +36,6 @@ export const useSortedPlaces = (data: Places): UseSortedPlacesReturn => {
         setIsGeoLoading(false);
       },
     );
-  }, [data]);
-
-  return { sortedPlaces, geoError, isGeoLoading };
+  };
+  return { sortedPlaces, getLocation, geoError, isGeoLoading };
 };
