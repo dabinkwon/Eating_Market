@@ -21,7 +21,7 @@ const FavoriteButton = ({ place }: FavoriteButtonProps) => {
   };
 
   return (
-    <div className="mx-auto cursor-pointer p-1">
+    <div className="mx-auto transform cursor-pointer p-1 transition duration-700 ease-in-out hover:scale-150">
       {isCurrentlyFavorite ? (
         <IoHeartCircle
           onClick={handleClick}

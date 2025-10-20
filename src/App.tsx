@@ -6,10 +6,10 @@ function App() {
   return (
     <div className="flex flex-col gap-10">
       <Header />
-      <div className="mx-11 flex flex-col gap-10">
+      <main className="mx-11 flex flex-col gap-10">
         <FavoriteRestaurant />
         <RestaurantList />
-      </div>
+      </main>
     </div>
   );
 }

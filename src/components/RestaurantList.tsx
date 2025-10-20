@@ -5,14 +5,16 @@ import { useSortedPlaces } from "../hooks/useSortedPlaces";
 import { useState } from "react";
 
 const RestaurantList = () => {
-  const [isClick, setIsClick] = useState(false);
+  const [isNearest, setIsNearest] = useState(false);
   const { data, isLoading, error } = usePlaces();
   const { sortedPlaces, getLocation, isGeoLoading, geoError } = useSortedPlaces(
     data || [],
   );
   if (isLoading || isGeoLoading) return <Loading />;
   if (error) return <div>error : {error.message}</div>;
-  if (geoError) return <div>{geoError}</div>; // 이후에 어떻게 할지 수정할 필요 있음
+  if (geoError) {
+    alert("위치 정보 접근이 거부되었습니다.");
+  }
   if (!data) return null;
 
   return (
@@ -21,19 +23,19 @@ const RestaurantList = () => {
         Restaurant List
       </h3>
       <button
-        className="transform transition duration-1000 ease-in-out hover:scale-120 hover:text-blue-800"
+        className="transform cursor-pointer transition duration-1000 ease-in-out hover:scale-120 hover:text-blue-800"
         onClick={() => {
           getLocation();
-          setIsClick((prev) => !prev);
+          setIsNearest((prev) => !prev);
         }}
       >
-        {isClick ? "Show Default" : "Show Nearest"}
+        {isNearest ? "Show Default" : "Show Nearest"}
       </button>
-      <div className="bg-card">
-        {(isClick ? sortedPlaces : data).map((place) => (
+      <section className="bg-card">
+        {(isNearest && !geoError ? sortedPlaces : data).map((place) => (
           <RestaurantItem key={place.id} place={place} />
         ))}
-      </div>
+      </section>
     </div>
   );
 };
