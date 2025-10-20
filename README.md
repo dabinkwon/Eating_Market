@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# 맛집 찾기 프로젝트
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 등록된 맛집 목록을 현재 위치 기준으로 가까운 순서대로 확인할 수 있는 웹 서비스
 
-Currently, two official plugins are available:
+## 주요 기능
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 전체 맛집 정보 가져오기
+- 현재 위치와 가장 가까운 맛집 순서로 표시하기
+- 맛집 저장
+- 저장한 맛집 조회 및 삭제
 
-## React Compiler
+## 기술 스택
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 주요 라이브러리
 
-## Expanding the ESLint configuration
+**Axios**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- HTTP 요청 처리
+- 자동 에러 핸들링
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**React Query**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- 서버 상태 관리
+- 자동 로딩/에러 상태 관리
+- 캐싱
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**TypeScript**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 타입 안정성
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### API
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Swagger API 문서 기반 통신
+- Backend: eatingMarket-BE
+
+## 핵심 구현
+
+### 위치 기반 거리 계산
+
+- `navigator.geolocation.getCurrentPosition()`으로 사용자 위치 가져오기
+- Haversine 공식을 사용한 두 지점 간 거리 계산
+- 계산된 거리를 기준으로 맛집 목록 자동 정렬
+
+### 데이터 관리
+
+- React Query: 맛집 목록 서버 데이터 관리
