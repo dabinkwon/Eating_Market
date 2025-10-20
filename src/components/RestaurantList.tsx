@@ -10,14 +10,14 @@ const RestaurantList = () => {
   const { sortedPlaces, getLocation, isGeoLoading, geoError } = useSortedPlaces(
     data || [],
   );
-  if (!data) return null;
   if (isLoading || isGeoLoading) return <Loading />;
   if (error) return <div>error : {error.message}</div>;
-  if (geoError) return <div>{geoError}</div>;
+  if (geoError) return <div>{geoError}</div>; // 이후에 어떻게 할지 수정할 필요 있음
+  if (!data) return null;
 
   return (
     <div>
-      <h3 className="mb-3 text-center text-xl font-semibold">
+      <h3 className="mb-3 text-center text-2xl font-semibold">
         Restaurant List
       </h3>
       <button
@@ -27,7 +27,7 @@ const RestaurantList = () => {
           setIsClick((prev) => !prev);
         }}
       >
-        Show nearest
+        {isClick ? "Show Default" : "Show Nearest"}
       </button>
       <div className="bg-card">
         {(isClick ? sortedPlaces : data).map((place) => (

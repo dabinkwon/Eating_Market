@@ -1,6 +1,6 @@
 export type Places = Place[];
 
-interface Place {
+export interface Place {
   id: string;
   title: string;
   image: {
