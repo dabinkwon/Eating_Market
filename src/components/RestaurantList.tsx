@@ -19,11 +19,11 @@ const RestaurantList = () => {
 
   return (
     <div>
-      <h3 className="mb-3 text-center text-2xl font-semibold">
+      <h3 className="mb-3 text-center text-2xl font-semibold dark:text-white">
         Restaurant List
       </h3>
       <button
-        className="transform cursor-pointer transition duration-1000 ease-in-out hover:scale-120 hover:text-blue-800"
+        className="transform cursor-pointer transition duration-1000 ease-in-out hover:scale-120 hover:text-blue-800 dark:text-white dark:hover:text-blue-400"
         onClick={() => {
           getLocation();
           setIsNearest((prev) => !prev);

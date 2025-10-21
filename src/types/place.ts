@@ -25,3 +25,8 @@ export interface DeleteModalContextType {
   openDeleteModal: (placeId: string) => void;
   closeDeleteModal: () => void;
 }
+
+export interface ModeType {
+  isDark: boolean;
+  handleMode: () => void;
+}

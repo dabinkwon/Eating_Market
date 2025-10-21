@@ -23,7 +23,7 @@ const FavoriteRestaurant = () => {
         onConfirm={handleConfirmDelete}
         onCancel={closeDeleteModal}
       />
-      <h3 className="mb-3 text-center text-2xl font-semibold">
+      <h3 className="mb-3 text-center text-2xl font-semibold dark:text-white">
         Saved Restaurants
       </h3>
       {data.length === 0 ? (

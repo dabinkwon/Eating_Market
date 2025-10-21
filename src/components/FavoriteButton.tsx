@@ -18,11 +18,11 @@ const FavoriteButton = ({ place }: ResturantItemProps) => {
   };
 
   return (
-    <div className="mx-auto cursor-pointer p-1 transition-transform duration-700 ease-in-out hover:scale-150">
+    <div className="hoverTransition mx-auto cursor-pointer p-1">
       {isCurrentlyFavorite ? (
         <IoHeartCircle
           onClick={handleClick}
-          className="text-2xl text-red-600"
+          className="text-2xl text-red-500"
         />
       ) : (
         <IoHeartCircleOutline onClick={handleClick} className="text-2xl" />
