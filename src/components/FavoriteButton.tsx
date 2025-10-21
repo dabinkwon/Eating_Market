@@ -2,14 +2,16 @@ import { IoHeartCircle } from "react-icons/io5";
 import { IoHeartCircleOutline } from "react-icons/io5";
 import { useFavorites } from "../hooks/useFavorite";
 import type { ResturantItemProps } from "../types/place";
+import { useDeleteModal } from "../hooks/useDeleteModal";
 
-const FavoriteButton = ({ place, onDeleteClick }: ResturantItemProps) => {
+const FavoriteButton = ({ place }: ResturantItemProps) => {
   const { addFavorite, isFavorite } = useFavorites();
   const isCurrentlyFavorite = isFavorite(place.id);
+  const { openDeleteModal } = useDeleteModal();
 
   const handleClick = () => {
-    if (isCurrentlyFavorite && onDeleteClick) {
-      onDeleteClick();
+    if (isCurrentlyFavorite) {
+      openDeleteModal(place.id);
     } else {
       addFavorite.mutate(place);
     }

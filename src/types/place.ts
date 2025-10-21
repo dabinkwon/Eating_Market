@@ -18,5 +18,10 @@ export interface ResturantListProps {
 
 export interface ResturantItemProps {
   place: Place;
-  onDeleteClick?: () => void;
+}
+
+export interface DeleteModalContextType {
+  selectedPlaceId: string | null;
+  openDeleteModal: (placeId: string) => void;
+  closeDeleteModal: () => void;
 }

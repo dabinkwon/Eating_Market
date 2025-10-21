@@ -1,20 +1,18 @@
-import { useState } from "react";
+import { useDeleteModal } from "../hooks/useDeleteModal";
 import { useFavorites } from "../hooks/useFavorite";
 import Modal from "./Modal";
 import RestaurantItem from "./RestaurantItem";
 
 const FavoriteRestaurant = () => {
   const { data, deleteFavorite } = useFavorites();
-  const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
+  const { selectedPlaceId, closeDeleteModal } = useDeleteModal();
 
   const handleConfirmDelete = () => {
     if (selectedPlaceId) {
       deleteFavorite.mutate(selectedPlaceId);
-      setSelectedPlaceId(null);
+      closeDeleteModal();
     }
   };
-
-  const handleCancel = () => setSelectedPlaceId(null);
 
   if (!data) return null;
 
@@ -23,7 +21,7 @@ const FavoriteRestaurant = () => {
       <Modal
         isOpen={!!selectedPlaceId}
         onConfirm={handleConfirmDelete}
-        onCancel={handleCancel}
+        onCancel={closeDeleteModal}
       />
       <h3 className="mb-3 text-center text-2xl font-semibold">
         Saved Restaurants
@@ -35,11 +33,7 @@ const FavoriteRestaurant = () => {
       ) : (
         <div className="bg-card">
           {data.map((place) => (
-            <RestaurantItem
-              key={place.id}
-              place={place}
-              onDeleteClick={() => setSelectedPlaceId(place.id)}
-            />
+            <RestaurantItem key={place.id} place={place} />
           ))}
         </div>
       )}
